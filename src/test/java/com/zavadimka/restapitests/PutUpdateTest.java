@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class PostRegisterUnsuccessfulTest extends TestBase {
+public class PutUpdateTest extends TestBase {
     @Test
     @DisplayName("Put Update response test")
     void putUpdateResponseShouldHaveStatus200() {
@@ -20,16 +20,17 @@ public class PostRegisterUnsuccessfulTest extends TestBase {
                 .log().method()
                 .log().body()
                 .contentType(JSON)
-                .body("{ \"email\": \"sydney@fife\" }")
+                .body("{ \"name\": \"morpheus\", \"job\": \"zion resident\" }")
                 .when()
-                .post("/register")
+                .put("/users/2")
                 .then()
                 .log().status()
                 .log().body()
-                .body(matchesJsonSchemaInClasspath("homework/schemas/register_unsuccessful_schema.json"))
-                .statusCode(400)
+                .body(matchesJsonSchemaInClasspath("schemas/update_schema.json"))
+                .statusCode(200)
                 .extract().response();
 
-        assertThat(response.path("error"), is("Missing password"));
+        assertThat(response.path("name"), is("morpheus"));
+        assertThat(response.path("job"), is("zion resident"));
     }
 }

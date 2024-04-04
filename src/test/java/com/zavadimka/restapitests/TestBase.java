@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;

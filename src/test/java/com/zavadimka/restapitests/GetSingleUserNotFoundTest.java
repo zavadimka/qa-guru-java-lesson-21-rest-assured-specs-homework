@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -6,23 +6,25 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class DeleteTest extends TestBase {
+public class GetSingleUserNotFoundTest extends TestBase {
+
     @Test
-    @DisplayName("Delete response test")
-    void putUpdateResponseShouldHaveStatus200() {
-
+    @DisplayName("Get Single user not found test")
+    void getSingleUserNotFoundShouldHaveStatus400() {
         Response response = given()
                 .log().uri()
                 .log().method()
                 .log().body()
                 .contentType(JSON)
                 .when()
-                .delete("/users/2")
+                .get("/users/23")
                 .then()
                 .log().status()
                 .log().body()
-                .statusCode(204)
+                .body(matchesJsonSchemaInClasspath("schemas/single_user_not_found_schema.json"))
+                .statusCode(404)
                 .extract().response();
     }
 }

@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -8,29 +8,29 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
-public class PutUpdateTest extends TestBase {
+public class PostCreateTest extends TestBase {
     @Test
-    @DisplayName("Put Update response test")
-    void putUpdateResponseShouldHaveStatus200() {
+    @DisplayName("Post Create response test")
+    void postCreateResponseShouldHaveStatus201() {
 
         Response response = given()
                 .log().uri()
                 .log().method()
                 .log().body()
                 .contentType(JSON)
-                .body("{ \"name\": \"morpheus\", \"job\": \"zion resident\" }")
+                .body("{ \"name\": \"morpheus\", \"job\": \"leader\" }")
                 .when()
-                .put("/users/2")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
-                .body(matchesJsonSchemaInClasspath("homework/schemas/update_schema.json"))
-                .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("schemas/create_schema.json"))
+                .statusCode(201)
                 .extract().response();
 
         assertThat(response.path("name"), is("morpheus"));
-        assertThat(response.path("job"), is("zion resident"));
+        assertThat(response.path("job"), is("leader"));
     }
 }

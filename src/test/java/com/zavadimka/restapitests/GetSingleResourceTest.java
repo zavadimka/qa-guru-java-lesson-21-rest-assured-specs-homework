@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ public class GetSingleResourceTest extends TestBase {
                 .then()
                 .log().status()
                 .log().body()
-                .body(matchesJsonSchemaInClasspath("homework/schemas/single_resource_schema.json"))
+                .body(matchesJsonSchemaInClasspath("schemas/single_resource_schema.json"))
                 .statusCode(200)
                 .extract().response();
 

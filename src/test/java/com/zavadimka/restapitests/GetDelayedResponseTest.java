@@ -1,4 +1,4 @@
-package com.zavadimka.restapitests.homework;
+package com.zavadimka.restapitests;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ public class GetDelayedResponseTest extends TestBase {
                 .then()
                 .log().status()
                 .log().body()
-                .body(matchesJsonSchemaInClasspath("homework/schemas/delayed_response_schema.json"))
+                .body(matchesJsonSchemaInClasspath("schemas/delayed_response_schema.json"))
                 .statusCode(200)
                 .extract().response();
 
