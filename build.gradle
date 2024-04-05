@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'io.qameta.allure' version '2.11.2'
+    id "io.freefair.lombok" version "8.6"
 }
 
 group 'com.zavadimka'
@@ -9,7 +10,7 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.21.0",
+def allureRestAssuredRVersion = "2.26.0",
     junitVersion = "5.10.1",
     slf4jVersion = "2.0.9",
     assertjVersion = "3.25.3",
@@ -18,13 +19,13 @@ def allureVersion = "2.21.0",
 
 allure {
     report {
-        version.set(allureVersion)
+        version.set(allureRestAssuredRVersion)
     }
     adapter {
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set(allureVersion)
+                adapterVersion.set(allureRestAssuredRVersion)
             }
         }
     }
@@ -32,7 +33,7 @@ allure {
 
 dependencies {
     testImplementation(
-            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.qameta.allure:allure-rest-assured:$allureRestAssuredRVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "org.assertj:assertj-core:$assertjVersion",
