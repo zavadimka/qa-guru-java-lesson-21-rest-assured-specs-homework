@@ -2,7 +2,7 @@ package com.zavadimka.models.users;
 
 import com.zavadimka.models.ResponseSupportModel;
 import com.zavadimka.models.ResponseUserModel;
-import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

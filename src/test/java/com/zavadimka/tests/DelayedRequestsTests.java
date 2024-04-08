@@ -44,7 +44,7 @@ public class DelayedRequestsTests extends TestBase {
 
             assertThat(Lists.transform(response.getData(), ResponseUserModel::getId)).contains(1, 2, 3, 4, 5, 6);
             assertThat(response.getData().get(0).getId()).isEqualTo(1);
-            assertThat(response.getData().get(1).getFirst_name()).isEqualTo("Janet");
+            assertThat(response.getData().get(1).getFirstName()).isEqualTo("Janet");
             assertThat(response.getData().get(4).getEmail()).isEqualTo("charles.morris@reqres.in");
         });
     }
