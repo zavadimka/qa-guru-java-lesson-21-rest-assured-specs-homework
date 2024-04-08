@@ -1,5 +1,6 @@
 package com.zavadimka.models;
 
+import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,9 @@ import lombok.NoArgsConstructor;
 public class ResponseUserModel {
     private int id;
     private String email;
-    private String first_name;
-    private String last_name;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
     private String avatar;
 }

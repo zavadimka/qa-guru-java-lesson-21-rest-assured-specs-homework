@@ -2,6 +2,7 @@ package com.zavadimka.models.delayed;
 
 import com.zavadimka.models.ResponseSupportModel;
 import com.zavadimka.models.ResponseUserModel;
+import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class DelayedResponseModel {
 
     private int page;
-    private int per_page;
+    @JsonProperty("per_page")
+    private int perPage;
     private int total;
-    private int total_pages;
+    @JsonProperty("total_pages")
+    private int totalPages;
     private List<ResponseUserModel> data;
     private ResponseSupportModel support;
 }

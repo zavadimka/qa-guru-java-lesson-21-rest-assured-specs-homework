@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UpdateBodyModel {
+public class UserManagementBodyModel {
 
     private String name;
     private String job;

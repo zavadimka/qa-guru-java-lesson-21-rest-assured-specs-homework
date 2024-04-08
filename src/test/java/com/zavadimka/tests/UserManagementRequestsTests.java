@@ -24,7 +24,7 @@ public class UserManagementRequestsTests extends TestBase {
     @DisplayName("### REST Api REST Assured User Management requests: Post Create test")
     void postCreateResponseShouldHaveStatus201() {
 
-        CreateBodyModel userData = new CreateBodyModel();
+        UserManagementBodyModel userData = new UserManagementBodyModel();
         userData.setName("morpheus");
         userData.setJob("leader");
 
@@ -49,7 +49,7 @@ public class UserManagementRequestsTests extends TestBase {
     @DisplayName("### REST Api REST Assured User Management requests: Put Update test")
     void putUpdateResponseShouldHaveStatus200() {
 
-        UpdateBodyModel userData = new UpdateBodyModel();
+        UserManagementBodyModel userData = new UserManagementBodyModel();
         userData.setName("morpheus");
         userData.setJob("zion resident");
 

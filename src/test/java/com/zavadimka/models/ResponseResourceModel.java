@@ -1,5 +1,6 @@
 package com.zavadimka.models;
 
+import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,5 +11,6 @@ public class ResponseResourceModel {
     private String name;
     private int year;
     private String color;
-    private String pantone_value;
+    @JsonProperty("pantone_value")
+    private String pantoneValue;
 }

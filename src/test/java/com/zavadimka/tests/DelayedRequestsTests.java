@@ -39,7 +39,7 @@ public class DelayedRequestsTests extends TestBase {
 
         step("Response checks", () -> {
             assertThat(response.getPage()).isEqualTo(1);
-            assertThat(response.getPer_page()).isEqualTo(6);
+            assertThat(response.getPerPage()).isEqualTo(6);
             assertThat(response.getData()).hasSize(6);
 
             assertThat(Lists.transform(response.getData(), ResponseUserModel::getId)).contains(1, 2, 3, 4, 5, 6);

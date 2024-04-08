@@ -3,7 +3,6 @@ package com.zavadimka.tests;
 import com.google.common.collect.Lists;
 import com.zavadimka.models.ResponseUserModel;
 import com.zavadimka.models.users.ListUsersResponseModel;
-import com.zavadimka.models.users.SingleUserNotFoundResponseModel;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
@@ -46,14 +45,13 @@ public class UserRequestsTests extends TestBase {
     @DisplayName("### REST Api REST Assured User requests: Get Single User Not Found test")
     void getSingleUserNotFoundResponseShouldHaveStatus404() {
 
-        SingleUserNotFoundResponseModel response = step("Make Get request to URL", () ->
+        step("Make Get request to URL", () ->
                 given()
                         .spec(baseRequestSpec)
-                    .when()
+                        .when()
                         .get("/users/23")
-                    .then()
+                        .then()
                         .spec(singleUserNotFoundResponseSpecWithStatusCode404)
-                        .extract().as(SingleUserNotFoundResponseModel.class)
         );
     }
 }
