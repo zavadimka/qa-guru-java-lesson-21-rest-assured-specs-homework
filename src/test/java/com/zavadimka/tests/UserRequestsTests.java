@@ -42,6 +42,32 @@ public class UserRequestsTests extends TestBase {
     }
 
     @Test
+    @DisplayName("### REST Api REST Assured User requests: Get Delayed User List Response test")
+    void getDelayedResponseShouldHaveStatus200() {
+
+        ListUsersResponseModel response = step("Make Get request to URL", () ->
+                given()
+                        .spec(baseRequestSpec)
+                        .when()
+                        .get("/users?delay=3")
+                        .then()
+                        .spec(delayedResponseSpecWithStatusCode200)
+                        .extract().as(ListUsersResponseModel.class)
+        );
+
+        step("Response checks", () -> {
+            assertThat(response.getPage()).isEqualTo(1);
+            assertThat(response.getPerPage()).isEqualTo(6);
+            assertThat(response.getData()).hasSize(6);
+
+            assertThat(Lists.transform(response.getData(), ResponseUserModel::getId)).contains(1, 2, 3, 4, 5, 6);
+            assertThat(response.getData().get(0).getId()).isEqualTo(1);
+            assertThat(response.getData().get(1).getFirstName()).isEqualTo("Janet");
+            assertThat(response.getData().get(4).getEmail()).isEqualTo("charles.morris@reqres.in");
+        });
+    }
+
+    @Test
     @DisplayName("### REST Api REST Assured User requests: Get Single User Not Found test")
     void getSingleUserNotFoundResponseShouldHaveStatus404() {
 
